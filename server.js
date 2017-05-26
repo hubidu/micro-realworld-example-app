@@ -15,11 +15,11 @@ Routes:
 ${routes}`
 );
 
-const { connect } = require('./mongoose-connect');
+const { mongoConnect } = require('./lib/micro-mongoose');
 
-connect();
-
-module.exports = visualize(
+module.exports = compose(
+    mongoConnect('mongodb://localhost/micro-realworld-example-app')
+)(visualize(
     async function(req, res) {
         let matched = match(req)
 
@@ -27,5 +27,6 @@ module.exports = visualize(
 
         throw createError(404, 'Route not found');
     }, process.env.NODE_ENV
-);
+));
+
 
