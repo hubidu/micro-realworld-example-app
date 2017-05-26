@@ -1,0 +1,20 @@
+{
+  "name": "micro-realworld-example-app",
+  "version": "1.0.0",
+  "description": "Backend for the realword example app using zeit's micro",
+  "main": "server.js",
+  "scripts": {
+    "start": "micro",
+    "dev": "cross-env NODE_ENV=dev micro"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^7.4.1",
+    "micro": "^7.3.3",
+    "micro-compose": "0.0.3",
+    "micro-visualize": "^3.0.1",
+    "mongoose": "^4.10.2",
+    "mongoose-unique-validator": "^1.0.5"
+  }
+}
