@@ -2,7 +2,6 @@ const { createError, text, json } = require('micro');
 const compose = require('micro-compose');
 
 const formdata = require('./lib/formdata.js');
-const User = require('./lib/user-model.js');
 
 module.exports.POST = compose()(
     async (req, res) => {
@@ -11,6 +10,7 @@ module.exports.POST = compose()(
         const email = body['user[email]'];
         const password = body['user[password]'];
 
+        const User = req.$mongoose.model('User');
         const user = await User.findOne({ email: email });
         if (!user) {
             throw createError(403, `No user with email ${email}`);

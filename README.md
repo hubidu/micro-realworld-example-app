@@ -5,11 +5,12 @@ Evaluating micro
 
 ## TODOs
 
-- Serve routes as index
-- Inject database connections
+- DONE Inject database connections
+- Inject mongoose models
+- Test with AVA
+- Serve routes/links as index html
 - Can i have a base route
 - Implement login
-- Inject mongoose models
 - JWT authentication
 - Use pm2 for watches and restarts
 - Use pm2 for cluster mode

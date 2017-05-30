@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "micro",
-    "dev": "cross-env NODE_ENV=dev micro"
+    "dev": "cross-env NODE_ENV=dev micro",
+    "test": "ava **/*.spec.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +17,11 @@
     "micro-visualize": "^3.0.1",
     "mongoose": "^4.10.2",
     "mongoose-unique-validator": "^1.0.5"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "test-listen": "^1.0.2"
   }
 }
