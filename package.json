@@ -6,13 +6,15 @@
   "scripts": {
     "start": "micro",
     "dev": "cross-env NODE_ENV=dev micro",
-    "test": "ava **/*.spec.js"
+    "test": "ava --color -v **/*.spec.js",
+    "test:watch": "npm t -- --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "jsonwebtoken": "^7.4.1",
     "micro": "^7.3.3",
+    "micro-boom": "^1.1.0",
     "micro-compose": "0.0.3",
     "micro-visualize": "^3.0.1",
     "mongoose": "^4.10.2",
@@ -20,8 +22,8 @@
   },
   "devDependencies": {
     "ava": "^0.19.1",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.1",
+    "faker": "^4.1.0",
+    "got": "^7.0.0",
     "test-listen": "^1.0.2"
   }
 }

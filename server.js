@@ -1,31 +1,32 @@
-const { send, createError } = require('micro');
+const { send } = require('micro');
+const { handleErrors, createError } = require('micro-boom')
 const compose = require('micro-compose');
 const visualize = require('micro-visualize');
-// TODO: Add back micro-boom for json responses
+
+const isMongooseValidationError = (err) => err.name === 'ValidationError'
+
+const { provideContext } = require('./provide-context.js');
+const { handleMongooseErrors } = require('./micro-mongoose')
 
 const routerConfig = {
-    filter: f => f.indexOf('lib') === -1
+    filter: f => f.indexOf('lib') === -1 && f.indexOf('.spec.js') === -1
 }
 const match = require('fs-router')(__dirname + '/routes', routerConfig);
-// TODO: Serve routes as index
-const routes = match._routes.map(r => `  ${r.methods} ${r.path.trim()}`).join('\n');
-console.log(`
-Routes:
-=======
-${routes}`
-);
 
-const { mongoConnect } = require('./lib/micro-mongoose');
+const ctx = require('./context')
+
+ctx.routes = match._routes
 
 module.exports = compose(
-    mongoConnect('mongodb://localhost/micro-realworld-example-app')
+    handleErrors,
+    handleMongooseErrors,
+    provideContext(ctx)
 )(visualize(
     async function(req, res) {
         let matched = match(req)
+        if (!matched) throw createError(404, 'Route not found')
 
-        if (matched) return await matched(req, res)
-
-        throw createError(404, 'Route not found');
+        return await matched(req, res)
     }, process.env.NODE_ENV
 ));
 

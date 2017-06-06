@@ -1,7 +1,6 @@
 const { createError } = require('micro');
 const compose = require('micro-compose');
 
-const User = require('./lib/user-model.js');
 const autoparams = require('./lib/auto-params.js');
 
 module.exports = compose(
