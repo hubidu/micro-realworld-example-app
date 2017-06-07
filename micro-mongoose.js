@@ -1,8 +1,12 @@
+const { createError } = require('micro-boom')
+
 const ctx = require('./context');
 
-const handleMongooseErrors = () => fn => async (req, res) => {
+const isMongooseValidationError = (err) => err.name === 'ValidationError'
+
+const handleMongooseErrors = fn => async (req, res) => {
     try {
-        return fn(req, res)
+        return await fn(req, res)
     } catch (err) {
         if (isMongooseValidationError(err)) {
             throw createError(400, 'Mongoose validation error', {

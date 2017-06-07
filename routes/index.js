@@ -5,8 +5,11 @@ module.exports = compose()(
     async (req, res) => {
         const routes = req.$ctx.routes
 
-        return `
-            ${routes.map(r => r.path).join('\n')}
-        `
+        return [].concat(
+            ['ROUTES'],
+            ['======'],
+            '',
+            routes.map(r => `${r.methods}\t${r.path}`)
+        ).join('\n')
     }
 );

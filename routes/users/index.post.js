@@ -1,12 +1,10 @@
 const { json } = require('micro');
 const compose = require('micro-compose');
-const { createError } = require('micro-boom')
-
 
 /**
  * Create a new user by POSTing username, email and password
  */
-module.exports.POST = compose()(
+module.exports = compose()(
     async (req, res) => {
         const body = await json(req)
         

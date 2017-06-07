@@ -16,6 +16,7 @@
     "micro": "^7.3.3",
     "micro-boom": "^1.1.0",
     "micro-compose": "0.0.3",
+    "micro-jwt-auth": "^1.6.0",
     "micro-visualize": "^3.0.1",
     "mongoose": "^4.10.2",
     "mongoose-unique-validator": "^1.0.5"
