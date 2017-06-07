@@ -7,8 +7,8 @@ const compose = require('micro-compose');
 module.exports = compose()(
     async (req, res) => {
         const body = await json(req)
-        
         const User = req.$ctx.User
+
         const user = new User()
         user.username = body.user.username
         user.email = body.user.email

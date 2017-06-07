@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 // var secret = require('../config').secret;
-const secret = 'MySuperSecretSecret';
+const secret = 'secret';
 
 var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
