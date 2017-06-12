@@ -6,7 +6,7 @@
   "scripts": {
     "start": "micro",
     "dev": "cross-env NODE_ENV=dev micro",
-    "test": "ava --color -v **/*.spec.js",
+    "test": "cross-env NODE_ENV='' ava --color -v **/*.spec.js",
     "test:watch": "npm t -- --watch"
   },
   "author": "",
