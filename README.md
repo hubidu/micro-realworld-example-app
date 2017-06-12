@@ -12,6 +12,8 @@ Evaluating micro
 - DONE Implement login
 - DONE Inject mongoose models
 
+- Refactor tests
+- Implement more functionality
 - 'Invalid json' when not supplying json body to put route
 - Micro boom add stacktrace to error
 - Serve routes/links as index html

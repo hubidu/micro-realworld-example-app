@@ -3,7 +3,7 @@ const compose = require('micro-compose');
 
 module.exports = compose()(
     async (req, res) => {
-        const routes = req.$ctx.routes
+        const routes = req.$routes
 
         return [].concat(
             ['ROUTES'],

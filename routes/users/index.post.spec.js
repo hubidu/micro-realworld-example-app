@@ -1,26 +1,10 @@
 const micro = require('micro')
+const { startMicro } = require('micro-test')
 const test = require('ava')
-const listen = require('test-listen')
 const faker = require('faker')
 const got = require('got')
 
 const postRequestHandler = require('./index.post.js')
-/**
- * Helper to start micro lambda
- * TODO How can I make that generic?
- */
-const startMicro = async (handlerFn) => {
-  const { handleErrors } = require('micro-boom')
-  const ctx = require('../../context');
-  const { provideContext } = require('../../provide-context.js');
-  const { handleMongooseErrors } = require('../../micro-mongoose.js');
-
-  const service = micro(
-    handleErrors(handleMongooseErrors(provideContext(ctx)(handlerFn)))
-  )
-  const url = await listen(service)
-  return url
-}
 
 test('POST /users with username, email, password should create new user successfully', async t => {
   const url = await startMicro(postRequestHandler);

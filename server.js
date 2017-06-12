@@ -1,31 +1,20 @@
-const { send } = require('micro');
-const { handleErrors, createError } = require('micro-boom')
-const compose = require('micro-compose');
-const visualize = require('micro-visualize');
+const { createError } = require('micro-boom')
 
-const { provideContext } = require('./provide-context.js');
-const { handleMongooseErrors } = require('./micro-mongoose')
+const middleware = require('./middleware.js')
 
 const routerConfig = {
     filter: f => f.indexOf('lib') === -1 && f.indexOf('.spec.js') === -1
 }
 const match = require('fs-router')(__dirname + '/routes', routerConfig);
 
-const ctx = require('./context')
-
-ctx.routes = match._routes
-
-module.exports = compose(
-    handleErrors,
-    handleMongooseErrors,
-    provideContext(ctx)
-)(visualize( // TODO: Use currying to make this nicer
+module.exports = middleware(
     async function(req, res) {
         let matched = match(req)
         if (!matched) throw createError(404, 'Route not found')
 
+        req.$routes = match._routes
         return await matched(req, res)
-    }, process.env.NODE_ENV
-));
+    }
+)
 
 
