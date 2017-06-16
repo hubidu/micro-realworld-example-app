@@ -11,8 +11,10 @@ Evaluating micro
 - DONE Define HTTP method in the file system
 - DONE Implement login
 - DONE Inject mongoose models
+- DONE Refactor tests
 
-- Refactor tests
+- Handle errors/exceptions correctly
+- Extract lambda documentation
 - Implement more functionality
 - 'Invalid json' when not supplying json body to put route
 - Micro boom add stacktrace to error

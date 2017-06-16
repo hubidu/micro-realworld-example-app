@@ -7,10 +7,11 @@ const { handleMongooseErrors } = require('./micro-mongoose')
 const ctx = require('./context')
 
 const visualizeCurried = fn => visualize(fn, process.env.NODE_ENV)
+const handleErrorsCurried = fn => handleErrors(fn, process.env.NODE_ENV !== 'production')
 
 module.exports = compose(
     visualizeCurried,
-    handleErrors,
+    handleErrorsCurried,
     handleMongooseErrors,
     provideContext(ctx)
 )

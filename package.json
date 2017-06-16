@@ -4,7 +4,7 @@
   "description": "Backend for the realword example app using zeit's micro",
   "main": "server.js",
   "scripts": {
-    "start": "micro",
+    "start": "cross-env JWT_SECRET=secret micro",
     "dev": "cross-env NODE_ENV=dev micro",
     "test": "cross-env NODE_ENV='' ava --color -v **/*.spec.js",
     "test:watch": "npm t -- --watch"
