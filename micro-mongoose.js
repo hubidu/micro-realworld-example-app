@@ -9,7 +9,7 @@ const handleMongooseErrors = fn => async (req, res) => {
         return await fn(req, res)
     } catch (err) {
         if (isMongooseValidationError(err)) {
-            throw createError(400, 'Mongoose validation error', {
+            throw createError(422, 'Mongoose validation error', {
                 message: err._message
             })
         }

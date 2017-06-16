@@ -5,6 +5,9 @@ const jwtAuth = require('micro-jwt-auth')
 const resolveJwt = require('./lib/resolve-jwt')
 const autoparams = require('./lib/auto-params.js')
 
+/**
+ * Follow the user given by :username
+ */
 module.exports = compose(
     jwtAuth(process.env.JWT_SECRET),
     resolveJwt(),

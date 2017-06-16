@@ -1,0 +1,1 @@
+module.exports = async (req, res) => "Implement: Get a list of articles"
